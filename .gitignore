@@ -4,4 +4,4 @@
 /flask_sql/templates
 /flask_sql/venv/
 /flask_sql/task_flask_sql.py
-/flask_sql/__pycache__/
+/flask_sql/__pycache__
