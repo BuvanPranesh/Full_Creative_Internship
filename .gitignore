@@ -5,3 +5,7 @@
 /flask_sql/venv/
 /flask_sql/task_flask_sql.py
 /flask_sql/My_Sql/__pycache__
+/flask_sqlalchemy/.idea
+/flask_sqlalchemy/venv/
+/flask_sqlalchemy/task_flask_sqlalchemy
+/flask_sqlalchemy/My_SQLAlchemy/__pycache__
