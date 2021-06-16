@@ -4,4 +4,4 @@
 /flask_sql/details.db
 /flask_sql/main.py
 /task_sql/run.py
-/task_sql/task_flask_sql
+/task_sql/task_flask_sql.py
