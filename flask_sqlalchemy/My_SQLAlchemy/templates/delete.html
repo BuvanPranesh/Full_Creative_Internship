@@ -1,0 +1,11 @@
+<html>
+<head>
+    <title>Delete</title>
+</head>
+<body>
+<form action="/delete" method="post">
+<p>Roll No:  <input type="text" name="roll" placeholder="Enter roll number" required pattern="[0-9]{1,}" oninvalid="setCustomValidity('should contains only numbers')" oninput="setCustomValidity('')"></p>
+    <button type="submit">Delete</button><br><br>
+    </form>
+</body>
+</html>
