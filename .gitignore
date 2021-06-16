@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+/flask_sql/.idea
+/flask_sql/templates
+/flask_sql/venv
+/flask_sql/details
+/flask_sql/main
