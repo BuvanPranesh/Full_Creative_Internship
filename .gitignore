@@ -1,7 +1,2 @@
-/flask_sql/.idea
-/flask_sql/templates
-/flask_sql/venv
-/flask_sql/details.db
-/flask_sql/main.py
-/task_sql/run.py
-/task_sql/task_flask_sql.py
+/flask_csv/.idea
+/flask_csv/venv/
