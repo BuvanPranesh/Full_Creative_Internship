@@ -1,6 +1,0 @@
-.details1{
-display:none;
-}
-
-
-  document.getElementById('search_city').addEventListener('submit',search);
