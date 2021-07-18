@@ -1,0 +1,59 @@
+<html>
+<head>
+     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/css/check.css')}}">
+     <title>Operation</title>
+        <style>
+        table, th , td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+</head>
+<body>
+
+    <!-- Search the city-->
+        <div id="search-city">
+            <form id='search_city'>
+                <p>Field:<select required name ="field" id="field1" oninvalid="setCustomValidity('select the field')" oninput="setCustomValidity('')">
+                    <option value="">search for field</option>
+                    <option value="Erode">Erode</option>
+                    <option value="Coimbatore">Coimbatore</option>
+                    <option value="Thiruchy">Thiruchy</option>
+                    </select></p>
+                <p><button type="submit" id="city-search">Search</button></p>
+            </form>
+        </div>
+
+
+    <!-- create the table and display the results-->
+
+        <div id="display_results" class="details1">
+            <table id="results" style="width:75%">
+                <tr>
+                    <th align="center" id="val_city">City</th>
+                    <th align="center" id="vaccine_">Vaccine center</th>
+                    <th align="center" id="slots_update">Slots available</th>
+                    <th align="center">Book Now</th>
+                </tr>
+            </table>
+        </div>
+
+
+<!-- Vaccine Register -->
+    <div id="register" class="details1">
+        <form id='register_form'>
+            <p>Name:<input type="text" name="name" id="name1"  placeholder="Enter name" required  pattern="^[a-zA-z]{3,}[ ]{0,1}[a-zA-Z]{0,}[ ]{0,1}[a-zA-Z]{0,1}[ ]{0,1}[a-zA-z]{0,1}" oninvalid="setCustomValidity('should contains only characters')" oninput="setCustomValidity('')"></p>
+            <p>Age:<input type="text" name="age" id="age1"  placeholder="Enter age" required  pattern="^[0-9]{1,3}" oninvalid="setCustomValidity('should contains only numbers')" oninput="setCustomValidity('')"></p>
+            <p>Aadhaar Number:<input type="text" name="aadhaar_no" id="aadhaar_no1" placeholder="Enter Aadhaar Number" required  pattern="^[0-9]{4}[ ]{0,1}[0-9]{4}[ ]{0,1}[0-9]{4}" oninvalid="setCustomValidity('should contains only numbers i.e 12 digit aadhaar Number')" oninput="setCustomValidity('')"></p>
+            <p>Phone Number:<input type="text" name="phone_no" id="phone_no1" placeholder="Enter Phone Number" required  pattern="^[0-9]{10}" oninvalid="setCustomValidity('should contains only characters')" oninput="setCustomValidity('')"></p>
+            <p>Address:</P>
+                <textarea name="address" id="address1" rows="4" cols="50" required></textarea>
+            <p><button type="submit" id="register_vaccine">Register</button></p>
+        </form>
+    </div>
+
+
+ <!-- import script-->
+    <script src="\static\javascript\project.js"></script>
+</body>
+</html>
