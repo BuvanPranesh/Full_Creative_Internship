@@ -14,3 +14,9 @@
 /Project_Regiter_Vaccine/.idea
 /Project_Register_Vaccine/venv
 /Project_Register_Vaccine/main
+/Project_Register_Vaccine/vaccine-booking.json
+/Project_Register_Vaccine/templates/display.html
+/Project_Register_Vaccine/templates/original.html
+/Project_Register_Vaccine/templates/search.html
+/Project_Register_Vaccine/templates/store.html
+/Project_Register_Vaccine/templates/temp.html
