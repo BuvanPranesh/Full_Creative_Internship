@@ -4,6 +4,7 @@ import os
 import datetime
 from google.cloud.datastore import *
 
+
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'vaccine-booking.json'
 app = Flask(__name__)
 
@@ -53,13 +54,59 @@ def center():
 def search():
     res_li = []
     with client.context():
-        res = Place.query().filter(Place.city == request.args.get('field')).fetch()
-        j = 1
+        res = Place.query().filter(Place.city == request.args.get('search_field')).fetch()
         for i in res:
-            res_li.append({"no": j, "city": i.city, "vaccine_centre": i.vaccine_centre,
+            res_li.append({"city": i.city, "vaccine_centre": i.vaccine_centre,
                            "slots_available": i.slots_available, "key_id": i.key.id()})
-            j = j + 1
         return jsonify({"vaccine": res_li})
+
+
+@app.route('/order_by')
+def order_by():
+    field = request.args.get('order_by_field')
+    res_li = []
+    with client.context():
+        if field == "city":
+            res = People.query().order(People.city).fetch()
+            for j in res:
+                res_li.append({"city": j.city, "vaccine_centre": j.vaccine_centre,
+                               "name": j.name, "age": j.age, "aadhaar_no": j.aadhaar_no, "phone_no": j.phone_no,
+                               "address": j.address, "time": j.time})
+            return jsonify({"register_vaccine": res_li})
+        elif field == "vaccine_centre":
+            res = People.query().order(People.vaccine_centre).fetch()
+            for j in res:
+                res_li.append({"city": j.city, "vaccine_centre": j.vaccine_centre,
+                               "name": j.name, "age": j.age, "aadhaar_no": j.aadhaar_no, "phone_no": j.phone_no,
+                               "address": j.address, "time": j.time})
+            return jsonify({"register_vaccine": res_li})
+        elif field == "name":
+            res = People.query().order(People.name).fetch()
+            for j in res:
+                res_li.append({"city": j.city, "vaccine_centre": j.vaccine_centre,
+                               "name": j.name, "age": j.age, "aadhaar_no": j.aadhaar_no, "phone_no": j.phone_no,
+                               "address": j.address, "time": j.time})
+            return jsonify({"register_vaccine": res_li})
+        elif field == "age":
+            res = People.query().order(People.age).fetch()
+            for j in res:
+                res_li.append({"city": j.city, "vaccine_centre": j.vaccine_centre,
+                               "name": j.name, "age": j.age, "aadhaar_no": j.aadhaar_no, "phone_no": j.phone_no,
+                               "address": j.address, "time": j.time})
+            return jsonify({"register_vaccine": res_li})
+
+
+@app.route('/filter_by')
+def filter_by():
+    res_li = []
+    with client.context():
+        res = People.query().order(-People.time).fetch()
+        for j in res:
+            if j.city == request.args.get('filter_by_city'):
+                res_li.append({"city": j.city, "vaccine_centre": j.vaccine_centre, "name": j.name, "age": j.age,
+                               "aadhaar_no": j.aadhaar_no, "phone_no": j.phone_no,
+                               "address": j.address, "time": j.time})
+        return jsonify({"register_vaccine": res_li})
 
 
 @app.route('/register', methods=['POST'])
@@ -78,8 +125,7 @@ def register():
                                      address=request.form.get('address'), city=i.city, vaccine_centre=i.vaccine_centre,
                                      time=str(x))
                         res.put()
-                    else:
-                        return "<html><body><h1>Vaccine Not available at this centre</h1>" \
+                        return "<html><body><h1>You have been registered successfully for the vaccination</h1>" \
                                "<h2><a href='/'>Click to home page</a></h2></body></html>"
         return redirect(url_for('login'))
 
@@ -88,10 +134,10 @@ def register():
 def display():
     res_li = []
     with client.context():
-        res = People.query()
+        res = People.query().order(-People.time).fetch()
         for j in res:
-            res_li.append({"city": j.city, "vaccine_centre": j.vaccine_centre,
-                           "name": j.name, "age": j.age, "aadhaar_no": j.aadhaar_no, "phone_no": j.phone_no,
+            res_li.append({"city": j.city, "vaccine_centre": j.vaccine_centre, "name": j.name, "age": j.age,
+                           "aadhaar_no": j.aadhaar_no, "phone_no": j.phone_no,
                            "address": j.address, "time": j.time})
         return jsonify({"register_vaccine": res_li})
 
